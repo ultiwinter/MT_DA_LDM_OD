@@ -1,0 +1,140 @@
+Class ID	Class Name	Counts	Augmentations
+42	censer	37	25
+122	jug	404	3
+106	glass without stem	224	5
+87	fire	153	5
+68	beer stein	85	10
+75	wine bottle	87	10
+136	pipe	1002	1
+93	ashtray	177	5
+67	match	61	15
+134	peach	810	2
+138	flower	4043	1
+119	glass with stem	364	3
+130	dog	575	2
+104	bread	220	5
+51	chalice	47	25
+101	holding the nose	139	7
+116	plum	348	3
+137	grapes	1247	1
+131	fruit	605	2
+118	pear	376	3
+113	gloves	278	3
+55	insect	38	25
+121	carnation	345	3
+133	rose	755	2
+35	snail	30	25
+112	butterfly	259	3
+69	tobacco-box	78	10
+110	smoking equipment	267	3
+45	sniffing	51	15
+85	daffodil	150	5
+126	tulip	480	3
+72	bottle	71	15
+96	cup	185	5
+103	smoke	202	5
+83	tobacco-packaging	130	7
+115	horse	252	3
+123	goat	376	3
+100	donkey	183	5
+135	sheep	764	2
+109	chimney	218	5
+73	candle	89	10
+114	lemon	291	3
+61	orange	52	15
+60	pumpkin	63	15
+52	lobster	49	25
+92	pig	124	7
+34	monkey	30	25
+132	bird	730	2
+129	animal corpse	604	2
+124	fish	463	3
+111	bivalve	233	5
+47	deer	37	25
+71	pomander	80	10
+90	teapot	165	5
+80	iris	94	10
+125	apple	435	3
+24	snowflake	28	35
+117	jasmine	333	3
+77	pomegranate	85	10
+120	vegetable	372	3
+86	melon	153	5
+127	cherry	450	3
+105	currant	111	7
+98	fig	184	5
+102	lily	179	5
+107	anemone	206	5
+99	drinking vessel	208	5
+30	crab	27	35
+12	cabbage	11	45
+38	pot	41	25
+70	violet	63	15
+88	petunia	154	5
+57	bracelet	40	25
+66	carafe	72	15
+128	cow	527	2
+23	spring onion	24	35
+16	dragonfly	18	45
+79	lily of the valley	111	7
+91	ring	175	5
+40	coffeepot	39	25
+78	whale	85	10
+53	necklace	45	25
+89	mushroom	167	5
+108	mammal	219	5
+32	big cat	19	45
+58	carrot	31	25
+39	peony	38	25
+29	geranium	31	25
+94	cheese	163	5
+56	prawn	43	25
+26	poppy	18	45
+81	tobacco	107	7
+21	lizard	24	35
+46	fly	35	25
+76	strawberry	55	15
+63	cat	67	15
+95	onion	145	7
+97	nut	183	5
+20	snake	23	35
+3	frog	8	70
+84	meat	97	10
+9	chess flower	13	45
+13	earring	10	45
+28	rabbit	24	35
+43	artichoke	48	25
+7	pepper	11	45
+25	moth	17	45
+50	blackberry	40	25
+27	columbine	27	35
+14	dandelion	14	45
+74	heliotrope	96	10
+54	bug	43	25
+49	garlic	36	25
+22	asparagus	24	35
+18	reptile/amphibia	10	45
+44	dahlia	31	25
+2	jewellery	8	70
+62	walnut	57	15
+82	olive	98	10
+33	jan steen jug	30	25
+19	apricot	13	45
+31	radish	26	35
+59	cornflower	58	15
+6	cauliflower	15	45
+5	celery	11	45
+17	hyacinth	22	35
+10	cigarette	12	45
+48	caterpillar	44	25
+37	lilac	23	35
+0	ant	2	100
+4	physalis	3	100
+36	bellflower	33	25
+8	ranunculus	6	70
+1	camel	8	70
+41	hazelnut	14	45
+65	forget-me-not	22	35
+64	daisy	9	70
+15	neroli	1	100
+11	matthiola	8	70
