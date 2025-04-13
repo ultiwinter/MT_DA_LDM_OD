@@ -1,4 +1,4 @@
-## 🖌️ Inpainting Pipeline
+## Inpainting Pipeline
 
 This module focuses on augmenting images in the ODOR dataset by applying various inpainting techniques to address class imbalance. Below is a breakdown of the workflow and the responsibilities of each script.
 
@@ -41,3 +41,33 @@ This module focuses on augmenting images in the ODOR dataset by applying various
 
 - **`adjust_json_ann.py`**  
   Adjusts bounding box annotations if they were incorrectly scaled or formatted during the augmentation process.
+
+
+
+
+
+## ControlNet Augmentation Pipeline
+
+This module focuses on class-balanced data augmentation using a ControlNet-based diffusion pipeline. It includes dataset preparation, model finetuning, inference, and reintegration of generated objects.
+
+### 📁 `ControlNet/`
+
+- **`class_imbalance_ann.py`**  
+  Determines the number of required augmentations for underrepresented classes. Ensures a minimum of **1000 instances** for each class across the dataset.
+
+- **`odor_controlnet_dataset.py`**  
+  Defines the ODOR dataset for ControlNet finetuning, including input preprocessing and dataset loading utilities.
+
+- **`setup_train_json_controlnet.py`**  
+  Prepares the ODOR dataset annotations and file structure specifically for finetuning with ControlNet.
+
+- **`finetune_stable_diffusion_odor_DDP.py`**  
+  Finetunes a Stable Diffusion model with ControlNet using **multi-GPU training** (Distributed Data Parallel). Supports scalable training for high-performance environments.
+
+- **`my_auto_hed2img_DPP.py`**  
+  Performs inference using the finetuned ControlNet model to generate synthesized object images. Supports parallelized processing with DDP.
+
+- **`overlay_bbox_imgs_plus_random.py`**  
+  Reinserts the generated object images back into the original artwork images. If non-overlapping placement is not feasible, it overlays them on blank canvases.  
+  Also generates **COCO-style JSON annotations** for the new augmented dataset.
+
