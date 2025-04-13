@@ -1,3 +1,17 @@
+# Master Thesis: Data Augmentation using Latent Diffusion Models for Object Detection
+
+This repository contains the full source code used in the master thesis titled **"Data Augmentation using Latent Diffusion Models for Object Detection."**
+
+The project explores advanced data augmentation techniques to address class imbalance and data scarcity in object detection tasks, particularly in artwork datasets. It integrates two powerful generative pipelines—**Inpainting** and **ControlNet**—built on top of Latent Diffusion Models. The effectiveness of these augmentations is evaluated using a YOLO-based object detector.
+
+**Core Components:**
+- **Inpainting Pipeline:** Object-aware and Background augmentation strategies using various masking modes.
+- **ControlNet Pipeline:** Guided synthesis and reintegration of objects through finetuned diffusion models.
+- **YOLO Evaluation:** Preparation, merging, and training of YOLO datasets to evaluate the effect of augmentations on detection performance.
+
+This codebase is modular and reproducible, enabling further experimentation with dataset augmentation strategies for domain-specific object detection.
+
+
 ## Inpainting Pipeline
 
 This module focuses on augmenting images in the ODOR dataset by applying various inpainting techniques to address class imbalance. Below is a breakdown of the workflow and the responsibilities of each script.
@@ -70,4 +84,20 @@ This module focuses on class-balanced data augmentation using a ControlNet-based
 - **`overlay_bbox_imgs_plus_random.py`**  
   Reinserts the generated object images back into the original artwork images. If non-overlapping placement is not feasible, it overlays them on blank canvases.  
   Also generates **COCO-style JSON annotations** for the new augmented dataset.
+
+
+
+
+## YOLO & Object Detection
+
+This module handles preparing the YOLO dataset, merging multiple data sources, and training the YOLO object detection model.
+
+- **`inpainting/mysrc/my_yolo_setup_modified.py`**  
+  Converts the ODOR dataset (including augmented images) into YOLO format. Handles bounding box conversion and directory structuring for training.
+
+- **`YOLO/merge_yolo_datasets.py`**  
+  Merges multiple YOLO-format datasets into a single unified dataset. Useful for combining original, inpainted, and ControlNet-augmented images.
+
+- **`YOLO/my_yolo_train.py`**  
+  Trains a YOLO model using the prepared and merged dataset. Includes training configuration and checkpointing logic.
 
