@@ -475,108 +475,99 @@ class MaskCreator:
 
                     
     def process_masks(self,Whole_Obj_RIO=False, use_partial=False, use_pixelwise=False, factor=0.3, mode=""):
-        # for annotation in tqdm(self.data['annotations'], desc="Processing masks for annotations"):
-            # try:
-            #     image_name = self.image_id_to_file_name[annotation['image_id']]
-            #     category_name = self.category_id_to_name[annotation['category_id']]
-            #     bbox = annotation['bbox']
+        for annotation in tqdm(self.data['annotations'], desc="Processing masks for annotations"):
+            try:
+                image_name = self.image_id_to_file_name[annotation['image_id']]
+                category_name = self.category_id_to_name[annotation['category_id']]
+                bbox = annotation['bbox']
                 
-            #     image_info = next((image for image in self.data['images'] if image['id'] == annotation['image_id']), None)
-            #     if image_info is None:
-            #         print(f"Warning: No matching image found for annotation {annotation['id']}. Skipping!")
-            #         continue
+                image_info = next((image for image in self.data['images'] if image['id'] == annotation['image_id']), None)
+                if image_info is None:
+                    print(f"Warning: No matching image found for annotation {annotation['id']}. Skipping!")
+                    continue
                 
-            #     if 'height' not in image_info or 'width' not in image_info:
-            #         print(f"Warning: Missing height or width for image {image_info['file_name']}. Skipping!")
-            #         continue
+                if 'height' not in image_info or 'width' not in image_info:
+                    print(f"Warning: Missing height or width for image {image_info['file_name']}. Skipping!")
+                    continue
                 
-            #     image_height = image_info['height']
-            #     image_width = image_info['width']
-            #     image_size = (image_height, image_width)
+                image_height = image_info['height']
+                image_width = image_info['width']
+                image_size = (image_height, image_width)
                 
-            #     if mode=="segment":
-            #         base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #         image_path = base_path + image_name
-            #         mask = self.segment_and_apply_mask(image_path, bbox)
-            #         # original_image = Image.open(image_name).convert("RGB")
-            #         # self.display_images(original_image, mask)
-            #     elif mode=="edge_detection":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.edge_detection_mask(image_path, bbox)
-            #     elif mode=="saliency_detection":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.saliency_detection_mask(image_path, bbox)
-            #     elif mode=="gradient_based":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.gradient_based_mask(image_path, bbox)
-            #     elif mode=="hog_based":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.hog_based_mask(image_path, bbox)
-            #     elif mode=="entropy_based":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.entropy_based_mask(image_path, bbox)
-            #     elif mode=="reversed_entropy_based":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.reversed_entropy_based_mask(image_path, bbox)
-            #     elif mode=="refined_smart_entropy_based":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.refined_smart_entropy_based_mask(image_path, bbox)
-            #     elif mode=="reversed_saliency":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.reversed_saliency_detection_mask(image_path, bbox)
-            #     elif mode=="object_border":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.object_border_mask(image_path, bbox)
-            #     elif mode=="novel_masking":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.novel_masking(image_path, bbox)
-            #     elif mode=="entropy_nonbinary":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.entropy_nonbinary_mask(image_path, bbox)
-            #     elif mode=="superpixel":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #     elif mode=="color_based":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #     elif mode=="connected_component":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #     elif mode=="morphological_operation":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #     elif mode=="random_partial":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.create_partial_mask(image_size, bbox, factor)
-            #     elif mode=="whole":
-            #             base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
-            #             image_path = base_path + image_name
-            #             mask = self.create_whole_mask(image_size, bbox)
+                if mode=="segment":
+                    base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                    image_path = base_path + image_name
+                    mask = self.segment_and_apply_mask(image_path, bbox)
+                    # original_image = Image.open(image_name).convert("RGB")
+                    # self.display_images(original_image, mask)
+                elif mode=="edge_detection":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.edge_detection_mask(image_path, bbox)
+                elif mode=="saliency_detection":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.saliency_detection_mask(image_path, bbox)
+                elif mode=="gradient_based":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.gradient_based_mask(image_path, bbox)
+                elif mode=="hog_based":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.hog_based_mask(image_path, bbox)
+                elif mode=="entropy_based":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.entropy_based_mask(image_path, bbox)
+                elif mode=="reversed_entropy_based":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.reversed_entropy_based_mask(image_path, bbox)
+                elif mode=="refined_smart_entropy_based":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.refined_smart_entropy_based_mask(image_path, bbox)
+                elif mode=="reversed_saliency":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.reversed_saliency_detection_mask(image_path, bbox)
+                elif mode=="object_border":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.object_border_mask(image_path, bbox)
+                elif mode=="novel_masking":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.novel_masking(image_path, bbox)
+                elif mode=="entropy_nonbinary":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.entropy_nonbinary_mask(image_path, bbox)
+                elif mode=="superpixel":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                elif mode=="random_partial":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.create_partial_mask(image_size, bbox, factor)
+                elif mode=="whole":
+                        base_path = '/home/woody/iwi5/iwi5215h/masterarbeit/repos/odor-images/images/'
+                        image_path = base_path + image_name
+                        mask = self.create_whole_mask(image_size, bbox)
 
-            #     if category_name=="reptile/amphibia":
-            #          category_name="reptile-amphibia"
-            #     mask_filename = f"{image_name.rsplit('.', 1)[0]}_{category_name}_{annotation['id']}_mask.png"
-            #     if isinstance(mask, np.ndarray):
-            #         mask = Image.fromarray(mask)
-            #     save_path = os.path.join(self.output_dir, mask_filename)
-            #     mask.save(save_path)
+                if category_name=="reptile/amphibia":
+                     category_name="reptile-amphibia"
+                mask_filename = f"{image_name.rsplit('.', 1)[0]}_{category_name}_{annotation['id']}_mask.png"
+                if isinstance(mask, np.ndarray):
+                    mask = Image.fromarray(mask)
+                save_path = os.path.join(self.output_dir, mask_filename)
+                mask.save(save_path)
 
-            # except KeyError as e:
-            #     print(f"Error: Missing key {e} in the annotations data.")
-            # except Exception as e:
-            #     print(f"Error processing annotation {annotation['id']}: {e}")
+            except KeyError as e:
+                print(f"Error: Missing key {e} in the annotations data.")
+            except Exception as e:
+                print(f"Error processing annotation {annotation['id']}: {e}")
         
         if mode=="object_border_nonoverlap":
             image_id_to_info = {image['id']: image for image in self.data['images']}
