@@ -1,11 +1,11 @@
 # Master Thesis: Data Augmentation using Latent Diffusion Models for Object Detection
 
-This repository contains the full source code used in the master thesis titled **"Data Augmentation using Latent Diffusion Models for Object Detection."**
+This repository contains the full source code used in the master thesis titled **"Data Augmentation using Latent Diffusion Models for Object Detection"**.
 
-The project explores advanced data augmentation techniques to address class imbalance and data scarcity in object detection tasks, particularly in artwork datasets. It integrates two powerful generative pipelines—**Inpainting** and **ControlNet**—built on top of Latent Diffusion Models. The effectiveness of these augmentations is evaluated using a YOLO-based object detector.
+The thesis explores advanced data augmentation techniques to address class imbalance and data scarcity in object detection tasks, particularly in Object Detection for Olfactory References (ODOR) datasets. It integrates two powerful generative pipelines—**Inpainting** and **ControlNet**—built on top of Latent Diffusion Models. The effectiveness of these augmentations is evaluated using a YOLO-based object detector.
 
 **Core Components:**
-- **Inpainting Pipeline:** Object-aware and Background augmentation strategies using various masking modes.
+- **Inpainting Pipeline:** Multiple object-aware and background augmentation strategies using various masking modes.
 - **ControlNet Pipeline:** Guided synthesis and reintegration of objects through finetuned diffusion models.
 - **YOLO Evaluation:** Preparation, merging, and training of YOLO datasets to evaluate the effect of augmentations on detection performance.
 
